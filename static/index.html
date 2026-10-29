@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo — мои задачи</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <section id="auth-screen" class="auth-screen">
+    <div class="auth-card">
+      <div class="brand"><span class="brand-mark">✓</span> todo</div>
+      <h1 id="auth-title">С возвращением!</h1>
+      <p class="muted" id="auth-subtitle">Войдите, чтобы увидеть свои задачи.</p>
+      <form id="auth-form">
+        <label>Имя пользователя<input id="auth-username" minlength="3" maxlength="30" required autocomplete="username" placeholder="Например, вась"></label>
+        <label>Пароль<input id="auth-password" type="password" minlength="6" required autocomplete="current-password" placeholder="Не менее 6 символов, вась"></label>
+        <button class="primary full" id="auth-submit">Войти, вась</button>
+      </form>
+      <p class="auth-switch" id="auth-switch">Нет аккаунта? <button class="text-button" id="switch-auth">Зарегистрироваться, вась</button></p>
+      <p class="message" id="auth-message"></p>
+    </div>
+  </section>
+
+  <div id="app" class="app hidden">
+    <aside class="sidebar">
+      <div class="brand sidebar-brand"><span class="brand-mark">✓</span> todo</div>
+      <button class="add-sidebar" id="sidebar-add">＋ Добавить задачу</button>
+      <nav class="nav">
+        <button class="nav-item active" data-filter="all"><span>▤</span> Входящие <span class="count" id="all-count">0</span></button>
+        <button class="nav-item" data-filter="today"><span>◷</span> Сегодня</button>
+        <button class="nav-item" data-filter="upcoming"><span>▦</span> Предстоящие</button>
+        <button class="nav-item" data-filter="completed"><span>✓</span> Выполненные</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="user-info"><div class="avatar" id="avatar">M</div><span id="username-label">Пользователь</span></div>
+        <button class="logout" id="logout">Выйти ↗</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar"><span class="crumb">Мои задачи</span><span class="today-label" id="today-label"></span></header>
+      <section class="content">
+        <div class="heading-row"><div><p class="eyebrow">МОЙ ПЛАН</p><h1 id="page-title">Входящие</h1><p class="muted" id="page-subtitle">Все задачи в одном месте, вась.</p></div>
+          <button class="primary" id="add-task">＋ Добавить задачу</button></div>
+        <div class="task-list" id="task-list"></div>
+        <div class="empty-state" id="empty-state"><div class="empty-icon">✓</div><h3>Пока всё спокойно, вась</h3><p>Добавь задачу, чтобы ничего не забыть, вась.</p><button class="text-button" id="empty-add">＋ Создать задачу</button></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop hidden" id="task-modal">
+    <form class="task-modal" id="task-form">
+      <div class="modal-head"><h2 id="modal-title">Новая задача</h2><button type="button" class="close" id="close-modal">×</button></div>
+      <label>Название задачи<input id="task-title" maxlength="200" required placeholder="Что нужно сделать?"></label>
+      <label>Описание<textarea id="task-description" maxlength="1000" rows="3" placeholder="Дополнительные детали (необязательно)"></textarea></label>
+      <div class="form-row">
+        <label>Дата и время<input id="task-due" type="datetime-local"></label>
+        <label>Приоритет<select id="task-priority"><option value="4">Обычный</option><option value="3">Средний</option><option value="2">Высокий</option><option value="1">Срочный</option></select></label>
+      </div>
+      <p class="message" id="task-message"></p>
+      <div class="modal-actions"><button type="button" class="secondary" id="cancel-modal">Отмена</button><button class="primary" type="submit">Сохранить</button></div>
+    </form>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
